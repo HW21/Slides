@@ -2,9 +2,111 @@ import {Cite} from 'spectacle';
 import {DarkSlide, CodeSlide} from './slides';
 import RegularComponent from './regular-component';
 
-# Spectacle MDX!
+---
+# Chips Made From Python 
+### Dan Fritchman
+### [hw21.io](hw21.io)
 
-**open the presentation/index.mdx file to get started**
+---
+export default DarkSlide
+
+# About Me 
+* Apple Silicon 09-19
+* HW21 2019-??
+* UC Berkeley 2020-??
+
+---
+# Outline
+* The New Chip Industry
+* How Chips Get Made
+* Python (and Friends) 
+
+---
+# Chip Making 
+* What does that look like? 
+* Clean room 
+* 3D
+
+---
+# Hardware Abstraction Stack 
+* "High-Level"
+* Behavioral
+* Structural 
+* Physical 
+
+---
+# Physical Layer: Layout
+
+---
+# Structural Layer
+## Schematics
+## HDLs
+
+---
+# Hardware Description Languages
+* Verilog
+* VHDL 
+
+---
+export default DarkSlide
+
+# Some Verilog 
+```verilog
+module V(ports)
+  input inp;
+  input clk;
+  output outp;
+endmodule
+```
+
+---
+export default DarkSlide
+
+# Behavioral Verilog 
+```verilog
+module V(ports)
+  always @ (posedge clk) begin
+    // stuff
+  end 
+endmodule
+```
+
+---
+# How Sucky Can it Be?
+# Or, Things *Not* To Take For Granted
+* Custom Types
+* Package Management 
+* Namespaces 
+
+---
+# When Your Language Sucks
+## Some Coping Mechanisms 
+* New Career?
+* Templating
+* Code Generation 
+* Replace It!
+
+---
+
+
+
+
+
+
+
+---
+# SVG
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+</svg>
+
+---
+export default CodeSlide
+
+```python
+def foo():
+  pass
+```
 
 ---
 export default DarkSlide
@@ -28,17 +130,11 @@ export const transition = ['zoom']
 ---
 
 ###### Typography
-
 # Heading 1
-
 ## Heading 2
-
 ### Heading 3
-
 #### Heading 4
-
 ##### Heading 5
-
 ###### Heading 6
 
 Standard Text
