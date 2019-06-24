@@ -1,0 +1,175 @@
+import { Notes } from 'mdx-deck'
+import future from '@mdx-deck/themes/future'
+import highlight from '@mdx-deck/themes/syntax-highlighter-prism'
+import { 
+    Image, Appear
+} from '@mdx-deck/components'
+import { 
+    Invert, Split, SplitRight, Horizontal, FullScreenCode, 
+} from '@mdx-deck/layouts'
+
+import syntax from './syntax'
+
+export const themes = [
+  future,
+  syntax
+]
+
+---
+# Chips Made From Python 
+### Dan Fritchman
+### [hw21.io](hw21.io)
+
+---
+
+# About Me 
+* Apple Silicon 2009-19
+* HW21 2019-??
+* UC Berkeley 2020-??
+
+---
+# Outline
+* How Chips Get Designed 
+* Python (and Friends) Role
+
+---
+# Software Making 
+* What does that look like? 
+
+(photo: office, people writing code, etc )
+
+---
+# Chip Making 
+* What does that look like? 
+
+* Clean room?
+* 3D?
+* Minority Report? 
+
+---
+# Hardware Abstraction Stack 
+* "High-Level"
+* Behavioral
+* Structural 
+* Physical 
+
+---
+# Physical Layer: Layout
+
+---
+# Structural Layer
+## Schematics
+## HDLs
+
+---
+# Hardware Description Languages
+* Verilog
+* VHDL 
+
+---
+
+# Some Verilog 
+```verilog
+module V(ports)
+  input inp;
+  input clk;
+  output outp;
+endmodule
+```
+
+---
+
+# Behavioral Verilog 
+```verilog
+module V(ports)
+  always @ (posedge clk) begin
+    // stuff
+  end 
+endmodule
+```
+
+---
+# How Sucky Can it Be?
+# Or, Things *Not* To Take For Granted
+* Custom Types
+* Package Management 
+* Namespaces 
+
+---
+# When Your Language Sucks
+## Some Coping Mechanisms 
+* Lower Your Expectations
+* New Career?
+* Templating
+* Code Generation 
+* Replace It!
+
+---
+# SVG
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+</svg>
+
+---
+<FullScreenCode>
+
+```python
+def foo():
+  pass
+```
+</FullScreenCode>
+
+---
+
+export const transition = ['zoom']
+
+# Write your Spectacle Presentations in Markdown
+## And seamlessly use React Components  
+**How sweet is that**  
+**(super sweet)**
+
+---
+
+![datboi](https://pbs.twimg.com/media/CkjFUyTXEAEysBY.jpg)
+
+
+
+---
+
+###### Typography
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+
+Standard Text
+
+---
+
+###### Standard List
+
+- Item 1
+- Item 2
+- Item 3
+- Item 4
+
+---
+
+> Example Quote
+
+
+
+---
+
+
+```javascript
+class SuperCoolComponent extends React.Component {
+  render() {
+    return (
+      <p>code slide works in markdown too whaaaaat</p>
+    );
+  }
+}
+```
