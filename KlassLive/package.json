@@ -6,6 +6,7 @@
     "help": "mdx-deck"
   },
   "dependencies": {
-    "mdx-deck": "^2.3.2"
+    "mdx-deck": "^2.3.2",
+    "react-helmet": "^5.2.1"
   }
 }
