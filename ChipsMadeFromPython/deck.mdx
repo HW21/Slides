@@ -1,25 +1,19 @@
 import { Notes } from 'mdx-deck'
-import future from '@mdx-deck/themes/future'
-import { 
-    Image, Appear
-} from '@mdx-deck/components'
+import { Appear } from '@mdx-deck/components'
+import { Image as BackgroundImage } from '@mdx-deck/components'
 import { 
     Invert, Split, SplitRight, Horizontal, FullScreenCode, 
 } from '@mdx-deck/layouts'
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 
-import syntax from './syntax'
-import Layout from './layout'
-import YouTube from './youtube'
-
-export const themes = [
-  future,
-  syntax
-]
+import Image from './Image'
+import Tweet from './Twitter'
+import YouTube from './YouTube'
+export { themes } from './themes'
 
 ---
 
-<Image
+<BackgroundImage
   src='./img/die-photo-b.jpg'
   style={{
     display: 'flex',
@@ -31,7 +25,7 @@ export const themes = [
 ## How Software<br/>Makes Hardware
 ### (Or, Chips Made<br/>From Python) 
 
-</Image>
+</BackgroundImage>
 
 ---
 ## About Me
@@ -52,7 +46,7 @@ export const themes = [
 #### What does that look like? 
 
 ---
-<Image 
+<BackgroundImage 
   src={"./img/silicon_valley.jpg"}
   style={{
     display: 'flex',
@@ -61,9 +55,8 @@ export const themes = [
     flexDirection: 'column',
   }} />
 
-
 ---
-<Image 
+<BackgroundImage 
   src={"./img/alex-kotliarskyi-QBpZGqEMsKg-unsplash.jpg"}
   style={{
     display: 'flex',
@@ -114,38 +107,22 @@ Bjarne Stroustrup, Father of C++
 ---
 ## Software Bedrock:<br/>Instructions
 
-<div className="centerContent">
-<div className="selfCenter">
-<TwitterTweetEmbed tweetId="1114789468886663169" />
-</div>
-</div>
+<Tweet id="1114789468886663169" />
 
 ---
 # Instructions
 
-<div className="centerContent">
-<div className="selfCenter">
-<TwitterTweetEmbed tweetId="1112626274625740801" />
-</div>
-</div>
+<Tweet id="1112626274625740801" />
 
 ---
 # Instructions
 
-<div className="centerContent">
-<div className="selfCenter">
-<TwitterTweetEmbed tweetId="1101276995738992641" />
-</div>
-</div>
+<Tweet id="1101276995738992641" />
 
 ---
 # Instructions
 
-<div className="centerContent">
-<div className="selfCenter">
-<TwitterTweetEmbed tweetId="1097358836640362496" />
-</div>
-</div>
+<Tweet id="1097358836640362496" />
 
 ---
 # Where Is<br/>Hardware<br/>Bedrock?
@@ -166,7 +143,8 @@ Bjarne Stroustrup, Father of C++
 ---
 ## Physical Layer
 ### Layout
-![layout](./img/IcLayout.png)
+
+<Image src={"./img/IcLayout.png"}/>
 
 --- 
 ## Physical Layer
@@ -188,6 +166,18 @@ Bjarne Stroustrup, Father of C++
 #### Behavioral
 #### Structural 
 #### Physical 
+
+
+---
+<Invert> 
+
+## Structural Layer
+### Schematics 
+
+
+![rpi](./img/raspberry_pi.png)
+
+</Invert> 
 
 ---
 ## Structural Layer
@@ -223,16 +213,6 @@ endmodule
 </div>
 
 </Split>
-
----
-<Invert> 
-
-## Structural Layer
-### Schematics 
-
-![rpi](./img/raspberry_pi.png)
-
-</Invert> 
 
 ---
 ## Hardware Description Language (HDL)
@@ -515,7 +495,7 @@ stuff happens, and other things react to it
 </Appear>
 
 ---
-## When Your Language Sucks
+## When Your<br/>Language Sucks
 ### Some Coping Mechanisms
 <Appear> 
 
@@ -575,13 +555,19 @@ endmodule
 ### Inverse Templating: React & JSX
 
 ```jsx
-class SuperCoolComponent extends React.Component {
-  render() {
-    return (
-      <p>code slide works in markdown too whaaaaat</p>
-    );
-  }
-}
+const HigherOrderMePlz = Comp => {
+  return class extends Component {
+    const { myProps, childProps } = this.props;
+    render() {
+      return (
+        <MyWrapperStuff {...myProps}>
+          <Comp {...childProps}/>
+        </MyWrapperStuff>
+      );
+    }
+  };
+};
+
 ```
 <Notes>
 Inverts Templating Relationship, 
@@ -606,7 +592,7 @@ into the good language
 <Appear>
 
 ### * High-Level SW Language
-### * Domain-Specific Library
+### * Domain-Specific Library 
 ### * (Most) Ditch HLS 
 ### * (Many) Ditch Event-Driven
 ### * (Mostly) from Academia
@@ -770,19 +756,12 @@ topEntity = exposeClockReset mac
 ---
 ## Why Should I Care?
 
-* RISC_V
-* Companies: Google, Amazon, etc
-* Moore's Law slow-down
-* Domain specifics, Accelerators
+* RISC-V
+* Companies Playing: Google, Amazon, Facebook
+* Moore's Law Slow-Down
+* Domain-Specifics, Accelerators
 * FPGA 
 * Amazon F1 
 
 ---
-<FullScreenCode>
-
-```python
-def foo():
-  pass
-```
-</FullScreenCode>
 
