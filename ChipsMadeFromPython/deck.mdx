@@ -10,6 +10,7 @@ import { TwitterTweetEmbed } from 'react-twitter-embed';
 
 import syntax from './syntax'
 import Layout from './layout'
+import YouTube from './youtube'
 
 export const themes = [
   future,
@@ -33,13 +34,13 @@ export const themes = [
 </Image>
 
 ---
-
-## About Me 
-### Dan Fritchman
-### [hw21.io](hw21.io)
+## About Me
 * Apple Silicon 2009-19
-* HW21 2019-??
-* UC Berkeley 2020-??
+* [hw21.io](https://hw21.io) 2019-??
+* Berkeley 2020-??
+* [fritch.mn](http://fritch.mn)
+* [medium.com/@dan_fritchman](https://medium.com/@dan_fritchman)
+* [medium.com/software-makes-hardware](https://medium.com/software-makes-hardware)
 
 ---
 # Outline
@@ -47,18 +48,48 @@ export const themes = [
 * How Python (and Friends) Are Changing It
 
 ---
-# Software Making 
-* What does that look like? 
-
-(photo: office, people writing code, etc )
+## People Making Software 
+#### What does that look like? 
 
 ---
-# Chip Making 
-* What does that look like? 
+<Image 
+  src={"./img/silicon_valley.jpg"}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  }} />
 
-* Clean room?
-* 3D?
-* Minority Report? 
+
+---
+<Image 
+  src={"./img/alex-kotliarskyi-QBpZGqEMsKg-unsplash.jpg"}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  }} />
+
+---
+## People Making *Silicon*
+#### What does that look like? 
+
+---
+<YouTube id={"5zyjSBSvqPc"} />
+
+---
+<YouTube id={"PJqbivkm0Ms"} />
+
+---
+<Appear>
+
+#### (That Was A Trick Question)
+#### Mostly, It's Code
+#### Just Crappier 
+
+</Appear>
 
 ---
 
@@ -194,6 +225,16 @@ endmodule
 </Split>
 
 ---
+<Invert> 
+
+## Structural Layer
+### Schematics 
+
+![rpi](./img/raspberry_pi.png)
+
+</Invert> 
+
+---
 ## Hardware Description Language (HDL)
 ### Verilog (1984)
 ### VHDL (1983)
@@ -293,7 +334,7 @@ PyObject * PyEval_EvalFrame(PyFrameObject *f) {
 </Split>
 
 ---
-## Hardware Programming Patterns
+## Behavioral Hardware<br/>Programming Patterns
 
 <Appear>
 
@@ -302,33 +343,186 @@ PyObject * PyEval_EvalFrame(PyFrameObject *f) {
 
 </Appear>
 
+
 ---
 ## Reactive Pattern 
 
-observable notebook, etc 
+```
+a = 1
+b = 2
+c = a + b 
+```
+```
+c
+```
+```
+3
+```
+
+---
+## Reactive Pattern 
+
+```
+a = 1
+b = 2
+c = a + b 
+```
+```
+c
+```
+```
+3
+```
+```
+a = 11
+b = 22
+```
+```
+c
+```
+```
+33
+```
+
+---
+<Invert>
+
+## Reactive Pattern 
+### [Observable Notebook](https://observablehq.com/@observablehq/how-observable-runs)
+
+![obs](./img/observable.png)
+
+</Invert>
+
+---
+## Reactive Pattern 
+
+```verilog
+module combinational (  
+  input a, b, c, d, output  o);
+ 
+  assign o = ~((a & b) | c ^ d);
+ 
+endmodule
+```
+
+<Notes>
+
+In an HDL, the reactive elements map pretty directly 
+to combinational logic.
+
+</Notes>
+
+---
+<Invert>
+
+## Reactive Pattern 
+
+![combo_sch](./img/combo_schematic.png)
+</Invert>
+
+---
+## Reactive Pattern 
+
+```verilog
+module half_adder ( 
+  input   a, b,
+  output  sum, cout );
+ 
+  assign sum  = a ^ b;
+  assign cout = a & b;
+endmodule
+```
+
+---
+<Invert>
+
+## Reactive Pattern 
+
+![combo_sch](./img/half_adder_with_assign.png)
+</Invert>
 
 ---
 ## Event-Driven Pattern 
 
+<Appear>
+
+#### * Stuff Happens
+#### * Some Code Runs in Response
+
+</Appear>
+
+---
+## Event-Driven Pattern 
+
+```verilog
+module fsm ( /* ... */ ) 
+  always @ (posedge clock or negedge reset)
+    next_state = state;
+    out = 0;
+    case (state)
+      A : 
+        if (in) next_state = C;
+        else next_state = B;
+      B : 
+        if (in) begin
+          out = 1;
+          next_state = C;
+        end
+      C : 
+        if (~in) begin
+          out = 1;
+          next_state = B;
+        end
+      default : begin
+          out = 1’bX;
+          next_state = 3’bX;
+        end
+    endcase
+  end
+endmodule
+```
+
+---
+## Event-Driven Pattern 
+
+```verilog
+module async_fsm ( /* ... */ ) 
+  always @(*) begin  // <= 
+    /* 
+    Similar stuff to what we saw on the last slide
+     */
+  end
+endmodule
+```
+
+<Notes>
+
 stuff happens, and other things react to it 
 
----
-# How Sucky Can it Be?
-### Or, Things *Not* To Take For Granted
-* Custom Types
-* Package Management 
-* Namespaces 
+</Notes>
 
 ---
-# When Your Language Sucks
-## Some Coping Mechanisms
+## How Sucky Can it Be?
+### Or, Things *Not* To Take For Granted
+
+<Appear>
+
+#### * Custom Types
+#### * Package Management 
+#### * Namespaces 
+
+</Appear>
+
+---
+## When Your Language Sucks
+### Some Coping Mechanisms
 <Appear> 
 
-### * Lower Your Expectations
-### * New Career?
-### * Templating
-### * Code Generation 
-### * Replace It!
+#### * New Career?
+#### * Templating
+#### * Code Generation 
+#### * Replace It!
 
 </Appear>
 
@@ -347,9 +541,7 @@ stuff happens, and other things react to it
 {% endblock %}
 ```
 
----
-## Coping Mechanisms
-### Templating 
+<Notes> 
 
 Crappy Language
 Better Language
@@ -358,10 +550,29 @@ Embed it
 Run expander program, probably also in "good" language 
 Get code out in crappy language  
 
+</Notes>
 
 ---
-# Coping Mechanisms
-## React & JSX
+## Coping Mechanisms
+### Templating
+
+```verilog
+module example (/*AUTOARG*/);
+  input i;
+  output o;
+  /*AUTOINPUT*/
+  /*AUTOOUTPUT*/
+  /*AUTOREG*/
+  inst inst (/*AUTOINST*/);
+  always @(/*AUTOSENSE*/) begin
+    o = i;
+  end
+endmodule 
+```
+
+---
+## Coping Mechanisms
+### Inverse Templating: React & JSX
 
 ```jsx
 class SuperCoolComponent extends React.Component {
@@ -379,8 +590,192 @@ into the good language
 </Notes>
 
 ---
+## "High Level" HDL
+### Two Paths 
+
+<Appear> 
+
+#### * High-Level Synthesis
+#### * Modern HDL
+
+</Appear> 
+
+---
 ## Modern HDL
-### Two 
+
+<Appear>
+
+### * High-Level SW Language
+### * Domain-Specific Library
+### * (Most) Ditch HLS 
+### * (Many) Ditch Event-Driven
+### * (Mostly) from Academia
+
+</Appear>
+
+---
+### [Chisel](https://chisel.eecs.berkeley.edu/)
+#### Language: Scala
+#### Maintainers: UC Berkeley
+
+```scala
+import chisel3._
+
+class GCD extends Module {
+  val io = IO(new Bundle {
+    val a  = Input(UInt(32.W))
+    val b  = Input(UInt(32.W))
+    val e  = Input(Bool())
+    val z  = Output(UInt(32.W))
+    val v  = Output(Bool())
+  })
+  val x = Reg(UInt(32.W))
+  val y = Reg(UInt(32.W))
+  when (x > y)   { x := x -% y }
+  .otherwise     { y := y -% x }
+  when (io.e) { x := io.a; y := io.b }
+  io.z := x
+  io.v := y === 0.U
+}
+```
+
+---
+<Invert>
+
+### [Chisel @ Google](https://www.youtube.com/watch?v=x85342Cny8c)
+
+![chisel_edge_tpu](./img/edge_tpu_chisel.png)
+
+</Invert>
+
+---
+### [SpinalHDL](https://github.com/SpinalHDL/SpinalHDL)
+#### Language: Scala
+
+```scala
+import spinal.core._
+
+class AND_Gate extends Component {
+  val io = new Bundle {
+    val a = in Bool
+    val b = in Bool
+    val c = out Bool
+  }
+  io.c := io.a & io.b
+}
+```
+
+---
+### [Magma](https://github.com/phanrahan/magma)
+#### Language: Python
+#### Maintainers: Stanford
+
+```python
+import magma as m
+
+class Adder(m.Circuit):
+    name = "Adder{}".format(N)
+    IO = ["I0", m.In(T), "I1", m.In(T), "CIN", m.In(m.Bit),
+          "O", m.Out(T), "COUT", m.Out(m.Bit)]
+    @classmethod
+    def definition(io):
+        adders = [mantle.FullAdder() for _ in range(N)]
+        adders = m.fold(adders, foldargs={"CIN":"COUT"})
+        COUT, O = adders(I0=io.I0, I1=io.I1, CIN=io.CIN)
+        m.wire(O, io.O)
+        m.wire(COUT, io.COUT)
+```
+
+---
+### [PyMtl](https://github.com/cornell-brg/pymtl)
+#### Language: Python
+#### Maintainers: Cornell
+
+```python
+from pymtl import *
+
+class RegIncr( Model ):
+  def __init__( s ):
+
+    s.in_ = InPort ( Bits(8) )
+    s.out = OutPort ( Bits(8) )
+    s.reg_out = Wire( Bits(8) )
+  
+  @s.tick
+  def block1():
+    if s.reset:
+      s.reg_out.next = 0
+    else:
+      s.reg_out.next = s.in_
+
+  @s.combinational
+  def block2():
+    s.out.value = s.reg_out + 1
+```
+
+---
+### [MiGen](https://github.com/m-labs/migen)
+#### Language: Python
+
+```python
+class ORGate(Module):
+  def __init__(self):
+    self.a = Signal()
+    self.b = Signal()
+    self.x = Signal()
+    self.comb += self.x.eq(self.a | self.b)
+
+dut = ORGate()
+
+def testbench():
+  yield dut.a.eq(0)
+  yield dut.b.eq(0)
+  yield
+  assert (yield dut.x) == 0
+
+  yield dut.a.eq(0)
+  yield dut.b.eq(1)
+  yield
+  assert (yield dut.x) == 1
+
+run_simulation(dut, testbench())
+```
+
+---
+### [Clash](https://clash-lang.org/)
+#### Language: Haskell
+
+```haskell
+module MAC where
+
+import Clash.Prelude
+
+ma acc (x,y) = acc + x * y
+
+macT acc (x,y) = (acc',o)
+  where
+    acc' = ma acc (x,y)
+    o    = acc
+
+mac = mealy macT 0
+
+topEntity
+  :: Clock System Source
+  -> Reset System Asynchronous
+  -> Signal System (Signed 9, Signed 9)
+  -> Signal System (Signed 9)
+topEntity = exposeClockReset mac
+```
+
+---
+## Why Should I Care?
+
+* RISC_V
+* Companies: Google, Amazon, etc
+* Moore's Law slow-down
+* Domain specifics, Accelerators
+* FPGA 
+* Amazon F1 
 
 ---
 <FullScreenCode>
