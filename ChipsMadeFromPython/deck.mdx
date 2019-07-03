@@ -15,6 +15,14 @@ export { themes } from './themes'
 [hw21.github.io/Slides/ChipsMadeFromPython](https://hw21.github.io/Slides/ChipsMadeFromPython)
 
 ---
+## About Me
+*  Apple Silicon 2009-19
+* [hw21.io](https://hw21.io) 2019-??
+* UC Berkeley 2020-??
+* [medium.com/@dan_fritchman](https://medium.com/@dan_fritchman)
+* [medium.com/software-makes-hardware](https://medium.com/software-makes-hardware)
+
+---
 
 <BackgroundImage
   src='./img/die-photo-b.jpg'
@@ -29,14 +37,6 @@ export { themes } from './themes'
 ### (Or, Chips Made<br/>From Python) 
 
 </BackgroundImage>
-
----
-## About Me
-*  Apple Silicon 2009-19
-* [hw21.io](https://hw21.io) 2019-??
-* UC Berkeley 2020-??
-* [medium.com/@dan_fritchman](https://medium.com/@dan_fritchman)
-* [medium.com/software-makes-hardware](https://medium.com/software-makes-hardware)
 
 ---
 # Outline
@@ -681,16 +681,16 @@ class RegIncr( Model ):
     s.out = OutPort ( Bits(8) )
     s.reg_out = Wire( Bits(8) )
   
-  @s.tick
-  def block1():
-    if s.reset:
-      s.reg_out.next = 0
-    else:
-      s.reg_out.next = s.in_
+    @s.tick
+    def block1():
+      if s.reset:
+        s.reg_out.next = 0
+      else:
+        s.reg_out.next = s.in_
 
-  @s.combinational
-  def block2():
-    s.out.value = s.reg_out + 1
+    @s.combinational
+    def block2():
+      s.out.value = s.reg_out + 1
 ```
 
 ---
@@ -756,6 +756,34 @@ topEntity = exposeClockReset mac
 * Domain-Specifics, Accelerators
 * FPGA 
 * Amazon F1 
+
+---
+
+---
+
+(backup)
+
+---
+<Invert>
+
+![](./img/supply_chain.png)
+
+</Invert>
+
+---
+<Invert>
+
+![](./img/supply_chain_examples.png)
+
+</Invert>
+
+
+---
+<Invert>
+
+![](./img/supply_chain_eda.png)
+
+</Invert>
 
 ---
 
