@@ -1,21 +1,18 @@
-import future from '@mdx-deck/themes/future'
-import highlight from '@mdx-deck/themes/syntax-highlighter'
-
-export const themes = [
-  future,
-  highlight
-]
-
-import { 
-    Image, Appear
-} from '@mdx-deck/components'
-
 import { 
     Invert, Split, SplitRight, Horizontal, FullScreenCode, 
 } from '@mdx-deck/layouts'
+import { Appear, Notes } from '@mdx-deck/components'
+import { Image as BackgroundImage } from '@mdx-deck/components'
+import Image from './Image'
+import future from '@mdx-deck/themes/future'
+import highlight from '@mdx-deck/themes/syntax-highlighter'
+export { themes } from './themes'
+
+
+[hw21.github.io/Slides/KlassLive](https://hw21.github.io/Slides/KlassLive)
 
 ---
-# KlassLive
+# Klass.Live
 
 * Live, fun teaching & learning. 
 * Built with Jupyter. 
@@ -23,191 +20,587 @@ import {
 
 ---
 ## About Me
-* Apple 2009-19
-* hw21.io 2019-??
-* Berkeley 2020-??
-* [fritch.mn](http://fritch.mn)
+*  Apple Silicon 2009-19
+* [hw21.io](https://hw21.io) 2019-??
+* UC Berkeley 2020-??
 * [medium.com/@dan_fritchman](https://medium.com/@dan_fritchman)
+* [fritch.mn](https://fritch.mn)
 
 ---
-<Image
-  src='https://source.unsplash.com/-8atMWER8bI/680x400'
+## Agenda
+* The Idea
+* High-Risk Demo
+* How It Works
+
+---
+<BackgroundImage
+  src='./img/classroom.jpeg'
   style={{
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'column',
   }}>
 
-## Teaching<br/>&<br/>Learning 
+## Teaching<br/> & <br/>Learning 
 
-</Image>
-
----
-## Teaching & Learning
-* Traditional Classroom
-    * Highly immersive. Live there for years. 
-* Lifelong
-* MOOC
-* Live
-
+</BackgroundImage>
 
 --- 
 <Invert>
 
-# MOOCs
-![mooc](./img/mooc.png)
+### MOOCs <br/> Massive Open Online Courses
+
+<Image src={"./img/mooc.png"}/>
 
 </Invert>
+
+<Notes>
+
+* Stick some content online
+* Anyone, anywhere can reach it
+* Much lower instruction cost 
+* Some limited interactivity
+
+</Notes>
 
 --- 
 <Invert>
 
-# MOOCs
-![mooc](./img/mooc_regions.png)
+### MOOCs
+<Image src={"./img/mooc_regions.png"}/>
 
 </Invert>
 
----
-# Artisinal <br/> Farm to Table <br/> Teaching & Learning
+<Notes>
 
-## Personal 
-## Interactive 
-## Live! 
+Analogy: MOOC : fast food 
 
----
-# *Live* <br/>  Teaching & Learning
-
-### * some benefits
-### * people showed up here, in this room 
-### * lambda school, etc 
+</Notes>
 
 ---
 <Invert>
 
-# Example: <br/> Lambda School 
-
-![lam](./img/lambda_live.png)
+### MOOC Interaction
+<Image src={"./img/coursera.png"}/>
 
 </Invert>
 
 ---
-# *Live* <br/>  Teaching & Learning
-## Some Options
+## Artisanal <br/> Farm to Table <br/> Teaching & Learning
 
-#### * Slides
-#### * Live Code
-#### * Notebook
+<Appear>
+
+### Interactive 
+### Live
+
+</Appear>
+
+<Notes>
+  Theres a reason thousands come to PyCon etc. 
+  Not just to network, but sit in these talks as well
+</Notes>
+
+---
+<Invert>
+
+## Example: <br/> Lambda School 
+<Image src={"./img/lambda_live.png"}/>
+
+</Invert>
+
+---
+## *Live* Learning <br/> Some Popular Options
+
+<Appear> 
+
+#### Slides
+#### Live Coding
+#### Jupyter Notebook
+
+</Appear> 
 
 ---
 ## Slides
 
-No interactivity
+### Interactivity: None
 
 ---
 <Split>
 
-![](https://source.unsplash.com/wqAuyugJIeU/768x2048)
+<Image src={"./img/tight-rope.jpeg"}/>
 
 ## Live <br/> Coding
 ### Or, Live <br/> Copy-Paste
+
 </Split>
 
----
+<Notes>
+  The live coding does has a substantial effect though. 
+  The act of watching the ideas emerge out of the speakers mind,
+  conveys them in a way canned slides just cant. 
+</Notes>
 
-# *Interactive* <br/> Teaching & Learning
+---
+## Live Copy-Pasting on [YouTube](https://www.youtube.com/watch?v=z-oqYWZhWwU)
+
+<Image src={"./img/jit-compiler.png"}/>
+
+---
+## Jupyter 
+
+### Sharing: Good
+### Participation: None
+
+---
+# *Interactive* <br/> Learning
+
+<Appear>
+
+## Some Problems
+
+</Appear>
 
 --- 
-<Image
+<BackgroundImage
   src='./img/install.gif'
   style={{
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'column',
   }}>
 
 ## How to Interact
 
 ## Step 1: Installation!
 
-</Image>
+</BackgroundImage>
 
 ---
-## Jupyter 
-* Sharing: Good
-* Setup: Depends
-* Participation: None
+## Awesome Interactive Inspiration 
 
----
-# Some Problems
-* Setup & Installation
-* Keeping Up
-* Fun! 
-
----
-# Setup & Installation Fun 
-C++ libs, crazy setup etc. 
-
----
-# Keeping Up
-
-```python
-def stage1(monkey):
-    """ Write a function that turns a monkey into a wrench. """
-    return ...
-```
-
----
-<FullScreenCode>
-
-```python
-def stage2(monkey):
-    """ Write a function that 
-    uses stage 1 
-    to turn a monkey 
-    into a whole garage. """
-    wrench = stage1(monkey)
-    return ...
-```
-
-</FullScreenCode>
-
----
-# Keeping Up
-
-```python
-def stage73(monkey):
-    """ Write a function that uses stages 1-72,
-    to recreate the origins of the universe. """
-    wrench = stage1(monkey)
-    return ...
-```
-
-Once any of stages 1-72 go wrong,
-you're done. 
-
----
-# Some Inspiration
 * Interviewing
     * CoderPad
-    * CodeBunk
-* Challenges
-    * foo.bar
-    * Advent of Code 
 * Web Environments
-    * repl.it 
-    * CodePen
-    * CodeSandbox
-* Jupyter
-* Binder
+    * CodePen, CodeSandbox, CodeBunk
+* Challenges
+    * foo.bar, Advent of Code, Kaggle
+* Combinations Thereof
+    * CoderByte
 
 ---
-# KlassLive 
+## Interviewing: [CoderPad](https://coderpad.io)
+
+<Image src={"./img/coderpad.png"}/>
+
+---
+## Web Env: [CodeSandbox](https://codesandbox.io)
+
+<Image src={"./img/codesandbox.png"}/>
+
+---
+## Web Env: [CodePen](https://codepen.io)
+
+<Image src={"./img/codepen.png"}/>
+
+---
+<Invert> 
+
+## Web Env: [CodeBunk](https://codebunk.com)
+
+<Image src={"./img/codebunk.png"}/>
+
+</Invert> 
+
+---
+<Invert> 
+
+## Web Env: [repl.it](https://repl.it)
+
+<Image src={"./img/repl-it.png"}/>
+
+</Invert> 
+
+---
+## Challenges: [Google FooBar](https://www.google.com/foobar)
+
+<Image src={"./img/foobar-bunny.gif"}/>
+
+---
+## Challenges: [Advent of Code](https://adventofcode.com)
+
+<Image src={"./img/advent.png"}/>
+
+---
+<Invert> 
+
+## Some of Each: [CoderByte](https://www.coderbyte.com)
+
+<Image src={"./img/coderbyte.png"}/>
+
+</Invert> 
+
+---
+<Invert> 
+
+## Problem 2: <br/> Keeping Up
+
+```python
+def step1(monkey):
+    """ Let's write a function 
+    that turns a monkey into a wrench. """
+    return ...
+```
+
+</Invert> 
+
+---
+
+<Invert> 
+
+## Keeping Up
+
+```python
+def step2(monkey):
+    """ Now write a function that uses step1 
+    to turn a monkey into a whole garage. """
+    wrench = stage1(monkey)
+    return ...
+```
+
+</Invert> 
+
+---
+<Invert> 
+
+# Keeping Up
+
+```python
+def step73(monkey):
+    """ Write a function that uses steps 1-72,
+    to recreate the origins of the universe. """
+    after_big_bang = stage72(monkey)
+    return ...
+```
+
+Once any of stages 1-72 go wrong, <br/> 
+you're done. 
+
+</Invert> 
+
+---
+## Problem 3: Fun! 
+
+---
+# Klass.Live 
 * Zero Installation
 * Always Live 
 * Built on Jupyter 
 
 ---
-# Demo?
+# Chapter 2
+# Demo Time
+# https://klass.live
+
+---
+
+---
+## Stuff Not Shown 
+(Yet)
+
+<Appear>
+
+### Any Multi-Media
+### Custom Language/ Environment
+### Testing & Grading API
+### Manual Grading 
+### Notebook/ Repo Export 
+
+</Appear>
+
+
+---
+# Chapter 3 
+# How this Works 
+
+---
+<Invert> 
+
+<Image src={"./img/klasslive-summary.png"}/>
+
+</Invert> 
+
+---
+<Invert> 
+
+<Image src={"./img/klasslive-app-api.png"}/>
+
+</Invert> 
+
+---
+<Invert> 
+
+<Image src={"./img/klasslive-api-server.png"}/>
+
+</Invert> 
+
+--- 
+## A Few Lessons 
+
+--- 
+## React 
+
+```jsx
+class Counter extends Component {
+  state = { count: 0 };
+  handleClick = () => {
+    this.setState({ count: this.state.count + 1});
+  }
+  render() {
+    return <button onClick={this.handleClick}>
+      {this.props.name} = {this.state.count}
+    </button>;
+  }
+}
+```
+
+Lesson: not goin back 
+
+---
+## Declarative React Routing 
+
+```jsx
+function AppRouter() {
+  return (
+    <Router>
+        <Route path="/" exact component={Index} />
+        <Route path="/about/" component={About} />
+        <Route path="/users/" component={Users} />
+    </Router>
+  );
+}
+```
+
+Initial reacion: what is this? 
+
+---
+## Redux
+
+```javascript
+function counter(state = 0, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1
+    case 'DECREMENT':
+      return state - 1
+    default:
+      return state
+  }
+}
+```
+
+Initial reaction: WTF is this? 
+
+---
+## Redux [State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
+
+```javascript
+const blogPosts = [
+  {
+    id: 'post1',
+    author: { username: 'user1', name: 'User 1' },
+    body: '......',
+    comments: [
+      {
+        id: 'comment1',
+        author: { username: 'user2', name: 'User 2' },
+        comment: '.....'
+      },
+      {
+        id: 'comment2',
+        author: { username: 'user3', name: 'User 3' },
+        comment: '.....'
+      }
+    ]
+  },
+  ...
+];
+```
+
+This is... Bad?
+
+---
+## Redux [State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
+
+```javascript
+{
+    posts : {
+        byId : {
+            "post1" : {
+                id : "post1",
+                author : "user1",
+                body : "......",
+                comments : ["comment1", "comment2"]
+            },
+            "post2" : {
+                id : "post2",
+                author : "user2",
+                body : "......",
+                comments : ["comment3", "comment4", "comment5"]
+            }
+        },
+        allIds : ["post1", "post2"]
+    },
+    ...
+}
+```
+
+This is... Good?
+
+
+---
+## Redux 
+
+```javascript
+const updateProblemTitle = (klass, action) => {
+    const {problemId, title} = action;
+    if (!problemId) return klass;
+
+    const problem = klass.problemsById[problemId];
+    if (!problem) return klass;
+
+    return {
+        ...klass,
+        problemsById: {
+            ...klass.problemsById,
+            [problemId]: {
+                ...problem,
+                title: title
+            }
+        }
+    }
+};
+```
+
+Hate it, but kinda love it.
+
+---
+### Paths Not Taken <br/> Next.js
+
+```jsx
+export default class Page extends React.Component<Props> {
+  static async getInitialProps({ req }: NextPageContext) {
+    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+    return { userAgent };
+  }
+
+  render() {
+    const { userAgent } = this.props;
+    return <main>Your user agent: {userAgent}</main>;
+  }
+}
+```
+
+---
+### Paths Not Taken <br/> MobX
+
+```jsx
+class Order {
+    @observable price = 0;
+    @observable amount = 1;
+
+    constructor(price) {
+        this.price = price;
+    }
+
+    @computed get total() {
+        return this.price * this.amount;
+    }
+}
+```
+
+---
+### Lessons: <br/> GraphQL
+
+```graphql  
+type Klass {
+    id: String!,
+    owner: User!,
+    title: String,
+    desc: String,
+    problems: [Problem]!,
+    scratch: [Cell],
+    metadata: JSON,
+    notebookMeta: JSON,
+}
+
+type Problem {
+    title: String,
+    desc: String,
+    setup: [Cell]!,
+    prompt: Cell!,
+    solution: Cell!,
+    tests: Cell!,
+}
+```
+
+---
+### Lessons: <br/> GraphQL
+
+```javascript
+export const resolvers = {
+  Query: {
+    klass: (_, arg) => db.get("klasses", arg.id),
+    klass_session: (_, arg) => db.get("klass_sessions", arg.id),
+  },
+  UserSession: {
+    user: (obj, arg) => db.getUser(obj.user_id),
+    klass_session: (obj, arg) => db.get("klass_sessions", obj.klass_session_id),
+    responses: (obj, arg) => obj.response_ids.map(id => db.get("submissions", id))
+  },
+  User: {
+    sessions: (obj, arg) => obj.session_ids.map(k => db.get("user_sessions", k))
+  },
+  KlassSession: {
+    klass: (obj, arg) => db.get("klasses", obj.klass_id),
+    host: (obj, arg) => db.getUser(obj.host_id),
+    user_sessions: (obj, arg) => obj.user_sessions.map(id => db.get("user_sessions", id))
+  },
+  Klass: {
+    owner: (klass, _) => db.getUser(klass.ownerId)
+  },
+  JSON: GraphQLJSON
+};
+```
+
+---
+## A Few Big Questions 
+
+<Appear>
+
+### Code Execution: How Secure is Secure?
+### Env Customization: How Free-Form?
+### Language Support
+
+</Appear>
+
+---
+
+---
+# Chapter 4
+## Socratic Method Ambush
+
+---
+
+## Does Anybody Give a Shit? 
+## What Would Help? 
+
+---
+
+---
+
+# Backup
 
 ---
 # Problems
@@ -230,20 +623,9 @@ you're done.
 * Always runs "all cells above", plus tests 
 
 ---
-# Scoreboard
-
----
 # Export 
 * Binder-Compatible GitHub Repo
 * Jupyter Notebook + Env Setup 
-* FIXME: how to point to existing container image? 
 
 ---
-# Tech Stack
-* React 
-* GraphQL
-* Firebase 
-* OpenFAAS? GKE?
 
-
----

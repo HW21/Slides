@@ -5,8 +5,7 @@
     "build": "mdx-deck build deck.mdx",
     "help": "mdx-deck"
   },
-  "dependencies": {
-    "mdx-deck": "^2.3.2",
-    "react-helmet": "^5.2.1"
+  "peerDependencies": {
+    "hw21-slides": "file:./.."
   }
 }
