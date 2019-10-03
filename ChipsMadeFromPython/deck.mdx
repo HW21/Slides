@@ -33,8 +33,8 @@ export { themes } from './themes'
     flexDirection: 'column',
   }}>
 
-## How Software<br/>Makes Hardware
-### (Or, Chips Made<br/>From Python) 
+## Chips Made<br/>From Python
+### (Or, How Software<br/>Makes Hardware)
 
 </BackgroundImage>
 
@@ -99,27 +99,43 @@ export { themes } from './themes'
 </Appear>
 
 ---
+<Invert>
+
 ## Software Bedrock:<br/>Instructions
 
-<Tweet id="1114789468886663169" />
+<Image src={"./img/instruct1.png"}/>
+
+</Invert>
 
 ---
+<Invert>
+
 # Instructions
 
-<Tweet id="1112626274625740801" />
+<Image src={"./img/instruct2.png"}/>
+
+</Invert>
 
 ---
+<Invert>
+
 # Instructions
 
-<Tweet id="1101276995738992641" />
+<Image src={"./img/instruct3.png"}/>
+
+</Invert>
 
 ---
+<Invert>
+
 # Instructions
 
-<Tweet id="1097358836640362496" />
+<Image src={"./img/instruct4.png"}/>
+
+</Invert>
 
 ---
-# Where Is<br/>Hardware<br/>Bedrock?
+# Where Is<br/>*Hardware*<br/>Bedrock?
 
 <Appear>
 
@@ -141,26 +157,37 @@ export { themes } from './themes'
 <Image src={"./img/IcLayout.png"}/>
 
 --- 
+
 ## Physical Layer
 ### Layout & Cross Section 
 
 <Split>
 
-![s](./img/sram-layout.png)
+<Image src={"./img/sram-layout.png"}/>
 
-![x](./img/cross-section.png)
+<Image src={"./img/cross-section.png"}/>
+
+
 
 </Split>
 
 
+
 ---
 ### Hardware Abstraction Stack 
+
+<Appear>
+
+<div>
 
 #### "High-Level"
 #### Behavioral
 #### Structural 
 #### Physical 
 
+</div>
+
+</Appear>
 
 ---
 <Invert> 
@@ -244,68 +271,6 @@ module RISCVCPU (clock);        // A RISC-V module excerpt
 endmodule
 
 ```
----
-### RISC-V vs [CPython](https://github.com/python/cpython/blob/master/Python/ceval.c)
-
-<Split>
-
-```verilog
-module RISCVCPU (clock);
-  // ...
-  always @(posedge clock) 
-    begin
-      if ((opcode == LD) || (opcode == SD))
-      begin
-        ALUOut <= A + ImmGen; // compute effective address
-        state <= 4;
-      end
-    else if (opcode == ALUop) begin
-      case (IR[31:25]) // case for the various R-type instructions
-        0: ALUOut <= A + B; // add operation
-        default: ; // other R-type operations
-      state <= 4;
-    end
-    else if (opcode == BEQ) begin
-      if (A == B) begin
-        PC <= ALUOut; // branch taken--update PC
-        state <= 1;
-      end
-      else
-      // ...
-    end
-  end
-endmodule
-```
-
-```c 
-PyObject * PyEval_EvalFrame(PyFrameObject *f) {
-    PyObject **stack_pointer;  /* Next free slot in value stack */
-    int opcode;        /* Current opcode */
-    switch (opcode) {
-      case TARGET(BINARY_OR): {
-          PyObject *right = POP();
-          PyObject *left = TOP();
-          PyObject *res = PyNumber_Or(left, right);
-          Py_DECREF(left);
-          Py_DECREF(right);
-          SET_TOP(res);
-          if (res == NULL) goto error;
-          DISPATCH();
-      }
-      case TARGET(LIST_APPEND): {
-          PyObject *v = POP();
-          PyObject *list = PEEK(oparg);
-          int err;
-          err = PyList_Append(list, v);
-          Py_DECREF(v);
-          if (err != 0) goto error;
-          PREDICT(JUMP_ABSOLUTE);
-          DISPATCH();
-      }
-      // ...
-```
-
-</Split>
 
 ---
 ## Behavioral Hardware<br/>Programming Patterns
@@ -314,6 +279,7 @@ PyObject * PyEval_EvalFrame(PyFrameObject *f) {
 
 ### Reactive
 ### Event-Driven
+### Async
 
 </Appear>
 
@@ -476,23 +442,64 @@ stuff happens, and other things react to it
 
 </Notes>
 
+--- 
+## Async Pattern 
+Concurrency (kind of) standing in for parallelism 
+
+```python
+import asyncio
+
+async def f1():
+    print("Step 1a")
+    await asyncio.sleep(2)
+    print("Step 3")
+    
+async def f2():
+    print("Step 1b")
+    await asyncio.sleep(1)
+    print("Step 2")
+    
+asyncio.gather(f1(), f2())
+```
+
+--- 
+## Async Pattern 
+
+```verilog
+module async_demo();
+
+    initial begin
+      $display("Step 1a")
+      #2;
+      $display("Step 3")
+    end
+
+    initial begin
+      $display("Step 1b")
+      #1;
+      $display("Step 2")
+    end
+
+endmodule
+```
+
 ---
-## How Sucky Can it Be?
-### Or, Things *Not* To Take For Granted
+## When Does <br/>Any of This Code *Run*?
 
 <Appear>
 
-#### * Custom Types
-#### * Package Management 
-#### * Namespaces 
+### Two Run-Times
+#### * Logic Synthesis (Compiler)
+#### * Simulation 
 
 </Appear>
 
 ---
 ## When Your<br/>Language Sucks
-### Some Coping Mechanisms
+
 <Appear> 
 
+### Some Coping Mechanisms
 #### * New Career?
 #### * Templating
 #### * Code Generation 
@@ -505,6 +512,9 @@ stuff happens, and other things react to it
 ### Templating 
 
 ```html
+<html>
+<body>
+
 {% extends "layout.html" %}
 {% block body %}
   <ul>
@@ -513,6 +523,9 @@ stuff happens, and other things react to it
   {% endfor %}
   </ul>
 {% endblock %}
+
+</body>
+</html>
 ```
 
 <Notes> 
@@ -528,7 +541,7 @@ Get code out in crappy language
 
 ---
 ## Coping Mechanisms
-### Templating
+### Verilog Templating
 
 ```verilog
 module example (/*AUTOARG*/);
@@ -546,18 +559,16 @@ endmodule
 
 ---
 ## Coping Mechanisms
-### Inverse Templating: React & JSX
+### "Inverse" Templating: React / JSX
 
 ```jsx
-const HigherOrderMePlz = Comp => {
+const HigherOrderMePlz = ComponentClass => {
   return class extends Component {
     const { myProps, childProps } = this.props;
     render() {
-      return (
-        <MyWrapperStuff {...myProps}>
-          <Comp {...childProps}/>
-        </MyWrapperStuff>
-      );
+      return (<MyWrapperStuff {...myProps}>
+          <ComponentClass {...childProps}/>
+        </MyWrapperStuff>);
     }
   };
 };
@@ -623,6 +634,7 @@ class GCD extends Module {
 <Invert>
 
 ### [Chisel @ Google](https://www.youtube.com/watch?v=x85342Cny8c)
+### Edge TPU
 
 ![chisel_edge_tpu](./img/edge_tpu_chisel.png)
 
@@ -633,16 +645,87 @@ class GCD extends Module {
 #### Language: Scala
 
 ```scala
-import spinal.core._
-
-class AND_Gate extends Component {
+class AdderCell extends Component {
   val io = new Bundle {
-    val a = in Bool
-    val b = in Bool
-    val c = out Bool
+    val a, b, cin = in Bool
+    val sum, cout = out Bool
   }
-  io.c := io.a & io.b
+
+  io.sum := io.a ^ io.b ^ io.cin
+  io.cout := (io.a & io.b) | (io.a & io.cin) | (io.b & io.cin)
 }
+
+class Adder(width: Int) extends Component {
+  
+  // Create 2 AdderCell
+  val cell0 = new AdderCell
+  val cell1 = new AdderCell
+  cell1.io.cin := cell0.io.cout   // Connect cout of cell0 to cin of cell1
+
+  // Another example which create an array of ArrayCell
+  val cellArray = Array.fill(width)(new AdderCell)
+  cellArray(1).io.cin := cellArray(0).io.cout   // Connect cout of cell(0) to cin of cell(1)
+}
+```
+
+---
+
+### Where is the 
+# Python?!?
+
+---
+### [MyHDL](http://www.myhdl.org/)
+#### Language: Python
+
+```python
+from myhdl import block, Signal, delay, always, now
+
+@block
+def HelloWorld():
+
+    clk = Signal(0)
+
+    @always(delay(10))
+    def drive_clk():
+        clk.next = not clk
+
+    @always(clk.posedge)
+    def say_hello():
+        print("%s Hello World!" % now())
+
+    return drive_clk, say_hello
+
+
+inst = HelloWorld()
+inst.run_sim(50)
+```
+
+---
+### [Migen](https://github.com/m-labs/migen) / [nMigen](https://github.com/m-labs/nmigen)
+#### Language: Python
+
+```python
+class ORGate(Module):
+  def __init__(self):
+    self.a = Signal()
+    self.b = Signal()
+    self.x = Signal()
+    self.comb += self.x.eq(self.a | self.b)
+
+dut = ORGate()
+
+def testbench():
+  yield dut.a.eq(0)
+  yield dut.b.eq(0)
+  yield
+  assert (yield dut.x) == 0
+
+  yield dut.a.eq(0)
+  yield dut.b.eq(1)
+  yield
+  assert (yield dut.x) == 1
+
+run_simulation(dut, testbench())
 ```
 
 ---
@@ -694,34 +777,6 @@ class RegIncr( Model ):
 ```
 
 ---
-### [MiGen](https://github.com/m-labs/migen)
-#### Language: Python
-
-```python
-class ORGate(Module):
-  def __init__(self):
-    self.a = Signal()
-    self.b = Signal()
-    self.x = Signal()
-    self.comb += self.x.eq(self.a | self.b)
-
-dut = ORGate()
-
-def testbench():
-  yield dut.a.eq(0)
-  yield dut.b.eq(0)
-  yield
-  assert (yield dut.x) == 0
-
-  yield dut.a.eq(0)
-  yield dut.b.eq(1)
-  yield
-  assert (yield dut.x) == 1
-
-run_simulation(dut, testbench())
-```
-
----
 ### [Clash](https://clash-lang.org/)
 #### Language: Haskell
 
@@ -748,14 +803,36 @@ topEntity = exposeClockReset mac
 ```
 
 ---
-## Why Should I Care?
+## Advice For Pythonistas
 
-* RISC-V
-* Companies Playing: Google, Amazon, Facebook
-* Moore's Law Slow-Down
-* Domain-Specifics, Accelerators
-* FPGA 
-* Amazon F1 
+<Appear> 
+
+### * Don't learn Verilog
+### * Don't learn VHDL 
+### * But HW is (increasingly) doable
+
+</Appear>
+
+<Notes>
+Doable on two lines:
+Programming paradigms are familiar
+Languages/ libs are catching up 
+</Notes>
+
+---
+## Why Care?
+
+<Appear> 
+
+### * RISC-V
+### * Accelerators
+### * FPGA 
+
+</Appear> 
+
+---
+
+[medium.com/software-makes-hardware](https://medium.com/software-makes-hardware)
 
 ---
 
@@ -786,4 +863,66 @@ topEntity = exposeClockReset mac
 </Invert>
 
 ---
+### RISC-V vs [CPython](https://github.com/python/cpython/blob/master/Python/ceval.c)
+
+<Split>
+
+```verilog
+module RISCVCPU (clock);
+  // ...
+  always @(posedge clock) 
+    begin
+      if ((opcode == LD) || (opcode == SD))
+      begin
+        ALUOut <= A + ImmGen; // compute effective address
+        state <= 4;
+      end
+    else if (opcode == ALUop) begin
+      case (IR[31:25]) // case for the various R-type instructions
+        0: ALUOut <= A + B; // add operation
+        default: ; // other R-type operations
+      state <= 4;
+    end
+    else if (opcode == BEQ) begin
+      if (A == B) begin
+        PC <= ALUOut; // branch taken--update PC
+        state <= 1;
+      end
+      else
+      // ...
+    end
+  end
+endmodule
+```
+
+```c 
+PyObject * PyEval_EvalFrame(PyFrameObject *f) {
+    PyObject **stack_pointer;  /* Next free slot in value stack */
+    int opcode;        /* Current opcode */
+    switch (opcode) {
+      case TARGET(BINARY_OR): {
+          PyObject *right = POP();
+          PyObject *left = TOP();
+          PyObject *res = PyNumber_Or(left, right);
+          Py_DECREF(left);
+          Py_DECREF(right);
+          SET_TOP(res);
+          if (res == NULL) goto error;
+          DISPATCH();
+      }
+      case TARGET(LIST_APPEND): {
+          PyObject *v = POP();
+          PyObject *list = PEEK(oparg);
+          int err;
+          err = PyList_Append(list, v);
+          Py_DECREF(v);
+          if (err != 0) goto error;
+          PREDICT(JUMP_ABSOLUTE);
+          DISPATCH();
+      }
+      // ...
+```
+
+</Split>
+
 
