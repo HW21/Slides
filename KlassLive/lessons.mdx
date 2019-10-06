@@ -1,0 +1,618 @@
+import { 
+    Invert, Split, SplitRight, Horizontal, FullScreenCode, 
+} from '@mdx-deck/layouts'
+import { Appear, Notes } from '@mdx-deck/components'
+import { Image as BackgroundImage } from '@mdx-deck/components'
+import Image from './Image'
+import future from '@mdx-deck/themes/future'
+import highlight from '@mdx-deck/themes/syntax-highlighter'
+export { themes } from './themes'
+
+
+---
+# Chapter 3 
+# How this Works 
+
+---
+<Invert> 
+
+<Image src={"./img/klasslive-summary.png"}/>
+
+</Invert> 
+
+---
+<Invert> 
+
+<Image src={"./img/klasslive-app-api.png"}/>
+
+</Invert> 
+
+---
+<Invert> 
+
+<Image src={"./img/klasslive-api-server.png"}/>
+
+</Invert> 
+
+--- 
+## A Few Lessons 
+
+--- 
+## React 
+
+```jsx
+class Counter extends Component {
+  state = { count: 0 };
+  handleClick = () => {
+    this.setState({ count: this.state.count + 1});
+  }
+  render() {
+    return <button onClick={this.handleClick}>
+      {this.props.name} = {this.state.count}
+    </button>;
+  }
+}
+```
+
+Lesson: not goin back 
+
+---
+## Declarative React Routing 
+
+```jsx
+function AppRouter() {
+  return (
+    <Router>
+        <Route path="/" exact component={Index} />
+        <Route path="/about/" component={About} />
+        <Route path="/users/" component={Users} />
+    </Router>
+  );
+}
+```
+
+Initial reaction: WTF is this? 
+
+---
+## Redux
+
+```javascript
+function counter(state = 0, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1
+    case 'DECREMENT':
+      return state - 1
+    default:
+      return state
+  }
+}
+```
+
+Initial reaction: WTF is this? 
+
+---
+## Redux [State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
+
+```javascript
+const blogPosts = [
+  {
+    id: 'post1',
+    author: { username: 'user1', name: 'User 1' },
+    body: '......',
+    comments: [
+      {
+        id: 'comment1',
+        author: { username: 'user2', name: 'User 2' },
+        comment: '.....'
+      },
+      {
+        id: 'comment2',
+        author: { username: 'user3', name: 'User 3' },
+        comment: '.....'
+      }
+    ]
+  },
+  ...
+];
+```
+
+This is... Bad?
+
+---
+## Redux [State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
+
+```javascript
+{
+    posts : {
+        byId : {
+            "post1" : {
+                id : "post1",
+                author : "user1",
+                body : "......",
+                comments : ["comment1", "comment2"]
+            },
+            "post2" : {
+                id : "post2",
+                author : "user2",
+                body : "......",
+                comments : ["comment3", "comment4", "comment5"]
+            }
+        },
+        allIds : ["post1", "post2"]
+    },
+    ...
+}
+```
+
+This is... Good?
+
+
+---
+## Redux 
+
+```javascript
+const updateProblemTitle = (klass, action) => {
+    const {problemId, title} = action;
+    if (!problemId) return klass;
+
+    const problem = klass.problemsById[problemId];
+    if (!problem) return klass;
+
+    return {
+        ...klass,
+        problemsById: {
+            ...klass.problemsById,
+            [problemId]: {
+                ...problem,
+                title: title
+            }
+        }
+    }
+};
+```
+
+Hate it, but kinda love it.
+
+---
+### Paths Not Taken <br/> Next.js
+
+```jsx
+export default class Page extends React.Component<Props> {
+  static async getInitialProps({ req }: NextPageContext) {
+    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+    return { userAgent };
+  }
+
+  render() {
+    const { userAgent } = this.props;
+    return <main>Your user agent: {userAgent}</main>;
+  }
+}
+```
+
+---
+### Paths Not Taken <br/> MobX
+
+```jsx
+class Order {
+    @observable price = 0;
+    @observable amount = 1;
+
+    constructor(price) {
+        this.price = price;
+    }
+
+    @computed get total() {
+        return this.price * this.amount;
+    }
+}
+```
+
+---
+### Lessons: GraphQL
+
+```graphql  
+type Klass {
+    id: String!,
+    owner: User!,
+    title: String,
+    desc: String,
+    problems: [Problem]!,
+    scratch: [Cell],
+    metadata: JSON,
+    notebookMeta: JSON,
+}
+
+type Problem {
+    title: String,
+    desc: String,
+    setup: [Cell]!,
+    prompt: Cell!,
+    solution: Cell!,
+    tests: Cell!,
+}
+```
+
+---
+### Lessons: GraphQL
+
+```graphql
+query GetOpenKlassSessions {
+  klass_sessions {
+    title
+    problem_num
+    host {
+      displayName
+      email
+    }
+    user_sessions {
+      user {
+        displayName
+        email
+      }
+      scores {
+        problems
+        total
+      }
+    }
+  }
+}
+```
+
+---
+### Lessons: GraphQL
+
+<Image src={"./img/graphql-api.png"}/>
+
+---
+### Lessons: GraphQL
+
+```javascript
+export const resolvers = {
+  Query: {
+    klass: (_, arg) => db.get("klasses", arg.id),
+    klass_session: (_, arg) => db.get("klass_sessions", arg.id),
+  },
+  UserSession: {
+    user: (obj, arg) => db.getUser(obj.user_id),
+    klass_session: (obj, arg) => db.get("klass_sessions", obj.klass_session_id),
+    responses: (obj, arg) => obj.response_ids.map(id => db.get("submissions", id))
+  },
+  User: {
+    sessions: (obj, arg) => obj.session_ids.map(k => db.get("user_sessions", k))
+  },
+  KlassSession: {
+    klass: (obj, arg) => db.get("klasses", obj.klass_id),
+    host: (obj, arg) => db.getUser(obj.host_id),
+    user_sessions: (obj, arg) => obj.user_sessions.map(id => db.get("user_sessions", id))
+  },
+  Klass: {
+    owner: (klass, _) => db.getUser(klass.ownerId)
+  },
+  JSON: GraphQLJSON
+};
+```
+
+---
+### Lessons: Last Week
+
+#### (Way) Over-Fetching
+#### Some Ways GraphQL Goes Wrong
+
+---
+<Invert>
+
+### Klass Updates
+
+<Image src={"./img/api-slow.png"}/>
+
+</Invert> 
+
+---
+### Debug Queries 
+
+```javascript
+resolvers = {
+  ...,
+  Query: {
+        ...,
+        health: () => true,
+        canary: async () => {
+            const inst = await db.models.canaries.findOne();
+            return inst.canary;
+        },
+    },
+};
+```
+
+---
+<Invert>
+
+### Health Query
+
+<Image src={"./img/api-health.png"}/>
+
+</Invert> 
+
+---
+<Invert>
+
+### Canary Query
+
+<Image src={"./img/api-canary.png"}/>
+
+</Invert> 
+
+---
+<Invert>
+
+### Real Klass Update Query
+
+<Image src={"./img/api-slow.png"}/>
+
+</Invert> 
+
+---
+<Invert>
+
+### Problem Review UI
+
+<Image src={"./img/problem-review.png"}/>
+
+Problem 1: *everyone* grabbed all of this 
+
+</Invert> 
+
+---
+### Problem 1.1
+
+```jsx 
+class KlassSession extends React.Component {
+
+    componentDidMount = async () => {
+        // ...
+        
+        // Set up background reload, every 5s
+        this.intervalId = setInterval(reload, 5000);
+    };
+```
+
+<Appear> 
+
+The problem: what if that request takes more than 5s?
+
+</Appear>
+
+---
+### Problem 1.2 
+#### Lack of UI "Optimism"
+
+<Appear> 
+
+* Fine when responses come fast 
+* Brutal when they take forever 
+
+</Appear>
+
+---
+### A Few Cures 
+#### Step 1: The Dumb Stuff 
+
+---
+<Invert>
+
+### Step 1
+#### Stop Grabbing All That Data 
+
+<Image src={"./img/api-user-speedup.png"}/>
+
+</Invert> 
+
+---
+### Step 1.1
+
+```jsx 
+class KlassSession extends React.Component {
+
+    autoReload = async () => {
+        await Sessions.reload();
+        this.intervalId = setTimeout(this.autoReload, 5000);
+    };
+
+    componentDidMount = async () => {
+        // ...
+        
+        // Set up background reload
+        this.intervalId = setTimeout(this.autoReload, 5000);
+    };
+```
+
+Just wait until requests get done 
+
+---
+### Step 2
+#### The Smart(er) Stuff 
+#### *Speed Up* Grabbing That Data 
+
+---
+### Reminder: GraphQL Resolvers 
+
+```javascript
+export const resolvers = {
+  Query: {
+    klass: (_, arg) => db.get("klasses", arg.id),
+    klass_session: (_, arg) => db.get("klass_sessions", arg.id),
+  },
+  UserSession: {
+    user: (obj, arg) => db.getUser(obj.user_id),
+    klass_session: (obj, arg) => db.get("klass_sessions", obj.klass_session_id),
+    responses: (obj, arg) => obj.response_ids.map(id => db.get("submissions", id))
+  },
+  User: {
+    sessions: (obj, arg) => obj.session_ids.map(k => db.get("user_sessions", k))
+  },
+  KlassSession: {
+    klass: (obj, arg) => db.get("klasses", obj.klass_id),
+    host: (obj, arg) => db.getUser(obj.host_id),
+    user_sessions: (obj, arg) => obj.user_sessions.map(id => db.get("user_sessions", id))
+  },
+  Klass: {
+    owner: (klass, _) => db.getUser(klass.ownerId)
+  },
+  JSON: GraphQLJSON
+};
+```
+
+---
+### GraphQL [DataLoader](https://github.com/graphql/dataloader)
+
+<Appear> 
+
+* Also from Facebook
+* Primary Features
+    * Batching 
+    *  Per-Request Caching 
+
+</Appear> 
+
+---
+### DataLoader Batching 
+
+```javascript
+const resolvers = {
+    ...,
+    UserSession: {
+        user: (obj, arg, {loaders}) => loaders.users.load(obj.user_id),
+        klass_session: (obj, arg, {loaders}) => loaders.klass_sessions.load(obj.klass_session_id),
+        responses: (obj, arg, {loaders}) => loaders.submissions.loadMany(validIds),
+    },
+};
+```
+
+```javascript
+const loaders = {
+  users: new DataLoader(
+    async keys => models.users.find({uid: {$in: keys}});
+  ),
+  ...
+};
+```
+
+---
+### Some Caching Options <br/> In Order of Preference
+
+<Appear> 
+
+<div>
+
+* Libraries already here 
+    * Apollo GraphQL Server 
+    * Mongoose ODM 
+
+</div>
+
+<div>
+
+* Other Popular Stuff 
+    * Redis 
+    * Memcached 
+
+</div>
+
+* Roll Your Own 
+
+</Appear>
+
+---
+<Invert> 
+
+### Caching Options
+#### Apollo Server  
+
+<Appear> 
+
+<Image src={"./img/apollo-cache-issue.png"}/>
+
+Sad!
+
+</Appear>
+
+</Invert> 
+
+---
+### Caching Options 
+#### Mongoose ODM 
+
+<Appear>
+
+*(blank image here)* <br/><br/> Sad!
+
+</Appear>
+
+---
+### Meta-Lessons from Last Week
+
+<Appear> 
+
+* You can screw up 
+* You can screw up several things
+* Even if they add up
+* But probably not if they *multiply* up
+
+</Appear> 
+
+---
+# Chapter 4
+## Socratic Method Ambush
+
+---
+## Does Anybody Give a Shit? 
+
+<Appear> 
+
+## What Would Help? 
+
+</Appear>
+
+---
+## A Few Big Questions 
+
+<Appear>
+
+### Code Execution: How Secure is Secure?
+### Env Customization: How Free-Form?
+### Language Support
+
+</Appear>
+
+---
+## CoderPad Security 
+
+<Image src={"./img/coderpad-hacking-me.png"}/>
+
+---
+## CoderPad Security 
+
+```markdown
+Hello! Hope you are enjoying CoderPad. I've added this file because a
+lot of people have emailed me voicing security concerns. Usually these
+concerns are to the tune of "programming language X lets me run Y
+system call."
+
+They're not wrong, you can run any system call! Security in CoderPad
+happens at the LXC sandbox layer. You are currently in an ephemeral
+container that will be destroyed upon your departure. You are welcome
+to run any privileged operation you can get your hands on. CoderPad
+is, after all, the highest fidelity programming interview tool there
+is.
+
+That said, if you do manage to uncover something like privilege
+escalation or data created by other users, I want to hear about it.
+You can email me at vincent@coderpad.io or tweet at @fulligin, and I
+look forward to hearing from you.
+
+Happy hunting!
+```
+
+---
