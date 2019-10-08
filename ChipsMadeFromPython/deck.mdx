@@ -236,7 +236,7 @@ endmodule
 </Split>
 
 ---
-## Hardware Description Language (HDL)
+## Popular Hardware <br/> Description Languages <br/> (HDL)
 ### Verilog (1984)
 ### VHDL (1983)
 
@@ -295,9 +295,19 @@ c = a + b
 ```
 c
 ```
+
+
+<Appear> 
+
+<div>
+
 ```
 3
 ```
+
+</div>
+
+</Appear> 
 
 ---
 ## Reactive Pattern 
@@ -306,23 +316,24 @@ c
 a = 1
 b = 2
 c = a + b 
-```
-```
-c
-```
-```
-3
-```
-```
 a = 11
 b = 22
 ```
 ```
 c
 ```
+
+<Appear> 
+
+<div>
+
 ```
 33
 ```
+
+</div>
+
+</Appear> 
 
 ---
 <Invert>
@@ -423,28 +434,8 @@ module fsm ( /* ... */ )
 endmodule
 ```
 
----
-## Event-Driven Pattern 
-
-```verilog
-module async_fsm ( /* ... */ ) 
-  always @(*) begin  // <= 
-    /* 
-    Similar stuff to what we saw on the last slide
-     */
-  end
-endmodule
-```
-
-<Notes>
-
-stuff happens, and other things react to it 
-
-</Notes>
-
 --- 
 ## Async Pattern 
-Concurrency (kind of) standing in for parallelism 
 
 ```python
 import asyncio
@@ -461,6 +452,21 @@ async def f2():
     
 asyncio.gather(f1(), f2())
 ```
+
+<Appear> 
+
+<div>
+
+```
+Step 1a
+Step 1b
+Step 2
+Step 3
+```
+
+</div>
+
+</Appear> 
 
 --- 
 ## Async Pattern 
@@ -482,6 +488,21 @@ module async_demo();
 
 endmodule
 ```
+
+<Appear> 
+
+<div>
+
+```
+Step 1a
+Step 1b
+Step 2
+Step 3
+```
+
+</div>
+
+</Appear> 
 
 ---
 ## When Does <br/>Any of This Code *Run*?
@@ -824,9 +845,9 @@ Languages/ libs are catching up
 
 <Appear> 
 
-### * RISC-V
 ### * Accelerators
 ### * FPGA 
+### * RISC-V
 
 </Appear> 
 
