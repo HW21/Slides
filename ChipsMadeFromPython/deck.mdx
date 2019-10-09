@@ -12,14 +12,14 @@ import YouTube from './YouTube'
 export { themes } from './themes'
 
 
-[chipsmadefrompython.hw21.now.sh](https://chipsmadefrompython.hw21.now.sh)
+[ChipsMadeFromPython.HW21.now.sh](https://chipsmadefrompython.hw21.now.sh)
 
 ---
 ## About Me
 *  Apple Silicon 2009-19
 * [hw21.io](https://hw21.io) 2019-??
 * UC Berkeley 2020-??
-* [medium.com/@dan_fritchman](https://medium.com/@dan_fritchman)
+* [@dan_fritchman](https://medium.com/@dan_fritchman)
 * [medium.com/software-makes-hardware](https://medium.com/software-makes-hardware)
 
 ---
@@ -75,7 +75,29 @@ export { themes } from './themes'
 <YouTube id={"5zyjSBSvqPc"} />
 
 ---
+<BackgroundImage 
+  src={"./img/intel-bunnies.png"}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  }} />
+
+---
 <YouTube id={"PJqbivkm0Ms"} />
+
+
+---
+<BackgroundImage 
+  src={"./img/minority-report.jpg"}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  }} />
+
 
 ---
 <Appear>
@@ -89,6 +111,8 @@ export { themes } from './themes'
 ---
 ### Software Abstraction Stack 
 
+<div> 
+
 <Appear>
 
 #### High-Level Languages
@@ -97,6 +121,8 @@ export { themes } from './themes'
 #### Machine
 
 </Appear>
+
+</div> 
 
 ---
 <Invert>
@@ -158,20 +184,14 @@ export { themes } from './themes'
 
 --- 
 
+<Invert> 
+
 ## Physical Layer
 ### Layout & Cross Section 
 
-<Split>
+<Image src={"./img/layout-xsection.png"}/>
 
-<Image src={"./img/sram-layout.png"}/>
-
-<Image src={"./img/cross-section.png"}/>
-
-
-
-</Split>
-
-
+</Invert> 
 
 ---
 ### Hardware Abstraction Stack 
@@ -504,16 +524,9 @@ Step 3
 
 </Appear> 
 
----
-## When Does <br/>Any of This Code *Run*?
+--- 
 
-<Appear>
-
-### Two Run-Times
-#### * Logic Synthesis (Compiler)
-#### * Simulation 
-
-</Appear>
+## Cool But... 
 
 ---
 ## When Your<br/>Language Sucks
@@ -580,7 +593,7 @@ endmodule
 
 ---
 ## Coping Mechanisms
-### "Inverse" Templating: React / JSX
+### "Inverse" Templating:<br/>React / JSX
 
 ```jsx
 const HigherOrderMePlz = ComponentClass => {
@@ -593,8 +606,8 @@ const HigherOrderMePlz = ComponentClass => {
     }
   };
 };
-
 ```
+
 <Notes>
 Inverts Templating Relationship, 
 placing the dumbed-down crap-language 
@@ -628,7 +641,7 @@ into the good language
 ---
 ### [Chisel](https://chisel.eecs.berkeley.edu/)
 #### Language: Scala
-#### Maintainers: UC Berkeley
+#### Authors: UC Berkeley
 
 ```scala
 import chisel3._
@@ -752,7 +765,7 @@ run_simulation(dut, testbench())
 ---
 ### [Magma](https://github.com/phanrahan/magma)
 #### Language: Python
-#### Maintainers: Stanford
+#### Authors: Stanford
 
 ```python
 import magma as m
@@ -773,7 +786,7 @@ class Adder(m.Circuit):
 ---
 ### [PyMtl](https://github.com/cornell-brg/pymtl)
 #### Language: Python
-#### Maintainers: Cornell
+#### Authors: Cornell
 
 ```python
 from pymtl import *
@@ -824,13 +837,25 @@ topEntity = exposeClockReset mac
 ```
 
 ---
-## Advice For Pythonistas
+## Why Care?
 
 <Appear> 
 
-### * Don't learn Verilog
-### * Don't learn VHDL 
-### * But HW is (increasingly) doable
+### * End of "Moore's Free Lunch"
+### * Accelerators
+### * FPGA 
+### * RISC-V
+
+</Appear> 
+
+---
+## Take-Aways
+
+<Appear> 
+
+### * We're not so different
+### * HW is (increasingly) doable 
+### * Face it, it's cool 
 
 </Appear>
 
@@ -839,17 +864,6 @@ Doable on two lines:
 Programming paradigms are familiar
 Languages/ libs are catching up 
 </Notes>
-
----
-## Why Care?
-
-<Appear> 
-
-### * Accelerators
-### * FPGA 
-### * RISC-V
-
-</Appear> 
 
 ---
 
