@@ -1,6 +1,6 @@
 {
   "builds": [
-    { "src": "public/**", "use": "@now/static" }
+    { "src": "**", "use": "@now/static" }
   ]
 }
 

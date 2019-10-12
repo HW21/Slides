@@ -14,7 +14,7 @@ export const ImageWrapper = props => {
 export const Image = props => {
     const {src, ...other} = props;
     return <ImageWrapper>
-        <img src={`url(${src})`} {...other}/>
+        <img src={src} {...other}/>
     </ImageWrapper>
 }
 export default Image;
