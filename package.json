@@ -1,5 +1,6 @@
 {
   "name": "hw21-slides",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "workspaces": ["mdx-deck-hw21"]
 }

@@ -1,0 +1,354 @@
+import { 
+    Invert, Split, SplitRight, Horizontal, FullScreenCode, 
+} from '@mdx-deck/layouts'
+import { Appear, Notes } from '@mdx-deck/components'
+import { Image as BackgroundImage } from '@mdx-deck/components'
+import future from '@mdx-deck/themes/future'
+import highlight from '@mdx-deck/themes/syntax-highlighter'
+
+import Image from 'mdx-deck-hw21/Image'
+export { themes } from 'mdx-deck-hw21/themes'
+
+
+[KlassLive.HW21.now.sh](https://klasslive.hw21.now.sh)
+
+---
+## About Me
+*  Apple Silicon 2009-19
+* [hw21.io](https://hw21.io) 2019-??
+* UC Berkeley 2020-??
+* [medium.com/@dan_fritchman](https://medium.com/@dan_fritchman)
+* [fritch.mn](https://fritch.mn)
+
+---
+# Klass.Live
+
+* Live, fun teaching & learning. 
+* Built with Jupyter. 
+* For sessions just like this. 
+
+---
+## Agenda
+* The Idea
+* High-Risk Demo
+* How It Works
+
+---
+<BackgroundImage
+  src='./img/classroom.jpeg'
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  }}>
+
+## Teaching<br/> & <br/>Learning 
+
+</BackgroundImage>
+
+--- 
+<Invert>
+
+### MOOCs <br/> Massive Open Online Courses
+
+<Image src={"./img/mooc.png"}/>
+
+</Invert>
+
+<Notes>
+
+* Stick some content online
+* Anyone, anywhere can reach it
+* Much lower instruction cost 
+* Some limited interactivity
+
+</Notes>
+
+--- 
+<Invert>
+
+### MOOCs
+<Image src={"./img/mooc_regions.png"}/>
+
+</Invert>
+
+<Notes>
+
+Analogy: MOOC : fast food 
+
+</Notes>
+
+---
+<Invert>
+
+### MOOC Interaction
+<Image src={"./img/coursera.png"}/>
+
+</Invert>
+
+---
+## Artisanal <br/> Farm to Table <br/> Teaching & Learning
+
+<Appear>
+
+### Interactive 
+### Live
+
+</Appear>
+
+<Notes>
+  Theres a reason thousands come to PyCon etc. 
+  Not just to network, but sit in these talks as well
+</Notes>
+
+---
+<Invert>
+
+## Example: <br/> Lambda School 
+<Image src={"./img/lambda_live.png"}/>
+
+</Invert>
+
+---
+## *Live* Learning <br/> Some Popular Options
+
+<Appear> 
+
+#### Slides
+#### Live Coding
+#### Jupyter Notebook
+
+</Appear> 
+
+---
+## Slides
+
+### Interactivity: None
+
+---
+<Split>
+
+<Image src={"./img/tight-rope.jpeg"}/>
+
+## Live <br/> Coding
+### Or, Live <br/> Copy-Paste
+
+</Split>
+
+<Notes>
+  The live coding does has a substantial effect though. 
+  The act of watching the ideas emerge out of the speakers mind,
+  conveys them in a way canned slides just cant. 
+</Notes>
+
+---
+## Live Copy-Pasting on [YouTube](https://www.youtube.com/watch?v=z-oqYWZhWwU)
+
+<Image src={"./img/jit-compiler.png"}/>
+
+---
+
+<Invert> 
+
+<Split>
+
+<Image src={"./img/jupyter.png"}/>
+
+## Jupyter 
+
+### Sharing: Good
+### Interaction: Bad
+
+</Split>
+
+</Invert> 
+
+
+---
+# *Interactive* <br/> Learning
+
+<Appear>
+
+## Some Problems
+
+</Appear>
+
+--- 
+<BackgroundImage
+  src='./img/install.gif'
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  }}>
+
+## How to Interact
+
+## Step 1: Installation!
+
+</BackgroundImage>
+
+---
+## Awesome Interactive Inspiration 
+
+* Interviewing
+    * CoderPad
+* Web Environments
+    * CodePen, CodeSandbox, CodeBunk
+* Challenges
+    * foo.bar, Advent of Code, Kaggle
+* Combinations Thereof
+    * CoderByte
+
+---
+## Interviewing: [CoderPad](https://coderpad.io)
+
+<Image src={"./img/coderpad.png"}/>
+
+---
+## Web Env: [CodeSandbox](https://codesandbox.io)
+
+<Image src={"./img/codesandbox.png"}/>
+
+---
+## Web Env: [CodePen](https://codepen.io)
+
+<Image src={"./img/codepen.png"}/>
+
+---
+<Invert> 
+
+## Web Env: [CodeBunk](https://codebunk.com)
+
+<Image src={"./img/codebunk.png"}/>
+
+</Invert> 
+
+---
+<Invert> 
+
+## Web Env: [repl.it](https://repl.it)
+
+<Image src={"./img/repl-it.png"}/>
+
+</Invert> 
+
+---
+## Challenges: [Google FooBar](https://www.google.com/foobar)
+
+<Image src={"./img/foobar-bunny.gif"}/>
+
+---
+## Challenges: [Advent of Code](https://adventofcode.com)
+
+<Image src={"./img/advent.png"}/>
+
+---
+<Invert> 
+
+## Some of Each: [CoderByte](https://www.coderbyte.com)
+
+<Image src={"./img/coderbyte.png"}/>
+
+</Invert> 
+
+---
+## Problem 2: <br/> Keeping Up
+
+```python
+def step1(monkey):
+    """ Let's write a function 
+    that turns a monkey into a wrench. """
+    return ...
+```
+
+---
+## Keeping Up
+
+```python
+def step2(monkey):
+    """ Now write a function that uses step1 
+    to turn a monkey into a whole garage. """
+    wrench = stage1(monkey)
+    return ...
+```
+
+---
+# Keeping Up
+
+```python
+def step73(monkey):
+    """ Write a function that uses steps 1-72,
+    to recreate the origins of the universe. """
+    after_big_bang = stage72(monkey)
+    return ...
+```
+
+Once any of stages 1-72 go wrong, <br/> 
+you're done. 
+
+---
+## Problem 3: Fun! 
+
+---
+# Klass.Live 
+* Zero Installation
+* Always Live 
+* Built on Jupyter 
+
+---
+# Chapter 2
+# Demo Time
+# https://klass.live
+
+---
+
+---
+## Stuff Not Shown 
+(Because it's not there, yet)
+
+<Appear>
+
+### Any Multi-Media
+### Custom Language/ Environment
+### Testing & Scoring API
+### Manual Scoring 
+### Notebook/ Repo Export 
+
+</Appear>
+
+---
+
+---
+
+# Backup
+
+---
+# Problems
+* Every Problem Has:
+    * Setup
+    * Prompt
+    * Solution(s)
+    * Tests
+* Tests run on server, in Klass container
+
+--- 
+# Scoring 
+* Pass / Fail
+* Manual Scoring 
+* Scoring API
+
+---
+# Execution
+* Jupyter Goal-Fight: Interactive vs Reproducible 
+* Always runs "all cells above", plus tests 
+
+---
+# Export 
+* Binder-Compatible GitHub Repo
+* Jupyter Notebook + Env Setup 
+
+---
+

@@ -1,4 +1,9 @@
 
+**/index.html
+**/main.js
+**/404.html
+
+
 .DS_Store
 public
 dist

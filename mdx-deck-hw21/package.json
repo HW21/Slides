@@ -1,0 +1,13 @@
+{
+  "name": "mdx-deck-hw21",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "mdx-deck": "^2.3.2",
+    "react-syntax-highlighter": "^10.3.0",
+    "react-twitter-embed": "^2.0.8",
+    "react-youtube": "^7.9.0",
+    "styled-components": "^4.3.2",
+    "react-helmet": "^5.2.1"
+  }
+}
