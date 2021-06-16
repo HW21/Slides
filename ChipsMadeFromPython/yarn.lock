@@ -3178,16 +3178,6 @@ https-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
-"hw21-slides@file:./..":
-  version "1.0.0"
-  dependencies:
-    mdx-deck "^2.3.2"
-    react-helmet "^5.2.1"
-    react-syntax-highlighter "^10.3.0"
-    react-twitter-embed "^2.0.8"
-    react-youtube "^7.9.0"
-    styled-components "^4.3.2"
-
 iconv-lite@^0.4.24, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
@@ -4731,9 +4721,9 @@ postcss-value-parser@^3.3.0, postcss-value-parser@^3.3.1:
   integrity sha512-pISE66AbVkp4fDQ7VHBwRNXzAAKJjw4Vw7nWI/+Q3vuly7SNfgYXvm6i5IgFylHGK5sP/xHAbB7N49OS4gWNyQ==
 
 postcss@^7.0.14, postcss@^7.0.5, postcss@^7.0.6:
-  version "7.0.17"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.17.tgz#4da1bdff5322d4a0acaab4d87f3e782436bad31f"
-  integrity sha512-546ZowA+KZ3OasvQZHsbuEpysvwTZNGJv9EfyCQdsIDltPSWHAeTQ5fQy/Npi2ZDtLI3zs7Ps/p6wThErhm9fQ==
+  version "7.0.36"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.36.tgz#056f8cffa939662a8f5905950c07d5285644dfcb"
+  integrity sha512-BebJSIUMwJHRH0HAQoxN4u1CN86glsrwsW0q7T+/m44eXOUAxSNdHRkNZPYz5vVUbg17hFgOQDE7fZk7li3pZw==
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"
